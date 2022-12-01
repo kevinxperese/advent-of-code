@@ -1,21 +1,10 @@
----
-title: "-- Day 1 -- Calorie Counting"
-author: "Kevin Perese"
-date: "2022-12-01"
-output:
-  md_document:
-    variant: markdown_github
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-library(tidyverse)
-```
-
 ## Part 1
-Find the maximum calories in the input file, which is organized by each row having a calorie value
-for a given snack carried by an elf, and each elf's snack list is split by an empty line.
-```{r}
+
+Find the maximum calories in the input file, which is organized by each
+row having a calorie value for a given snack carried by an elf, and each
+elf’s snack list is split by an empty line.
+
+``` r
 calories <- readr::read_lines('../inputs/calories.txt')
 
 calories_list <- c(0)
@@ -32,10 +21,14 @@ for (cal in calories) {
 
 print(max(calories_list))
 ```
-## Part 2
-Find the sum of the top three elves' snacks.
 
-```{r}
+    ## [1] 72602
+
+## Part 2
+
+Find the sum of the top three elves’ snacks.
+
+``` r
 calories <- readr::read_lines('../inputs/calories.txt')
 
 calories_list <- c(0)
@@ -54,3 +47,5 @@ sorted <- sort(calories_list, decreasing=TRUE)
 
 print(sorted[1] + sorted[2] + sorted[3])
 ```
+
+    ## [1] 207410
