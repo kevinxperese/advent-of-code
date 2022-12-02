@@ -1,0 +1,76 @@
+# – Day 2 – Rock, Scissors, Paper
+
+2022-12-02
+
+## Get data
+
+``` r
+test_strategy_guide <- readr::read_lines('../inputs/test_strategy_guide.txt')
+strategy_guide <- readr::read_lines('../inputs/strategy_guide.txt')
+```
+
+## Part 1
+
+``` r
+shape_scores = list('X' = 1, 'Y' = 2, 'Z' = 3)
+
+outcome_scores = list(
+    'A X' = 3,  # rock v. rock
+    'A Y' = 6,  # paper v. rock
+    'A Z' = 0,  # scissors v. rock
+
+    'B X' = 0,  # rock v. paper
+    'B Y' = 3,  # paper v. paper
+    'B Z' = 6,  # scissors v. paper
+        
+    'C X' = 6,  # rock v. scissors
+    'C Y' = 0,  # paper v. scissors
+    'C Z' = 3   # scissors v. scissors
+)
+
+total_score <- 0
+
+for (play in strategy_guide){
+    shape_score <- shape_scores[substr(play, 3, 3)]
+    outcome_score <- outcome_scores[play]
+    game_score <- shape_score[[1]] + outcome_score[[1]]
+    total_score <- total_score + game_score
+}
+
+total_score
+```
+
+    ## [1] 10816
+
+## Part 2
+
+``` r
+shape_scores = list(
+  'A X' = 3,  # rock and lose (scissors)
+  'A Y' = 1,  # rock and draw (rock)
+  'A Z' = 2,  # rock and win (paper)
+
+  'B X' = 1,  # paper and lose (rock)
+  'B Y' = 2,  # paper and draw (paper)
+  'B Z' = 3,  # paper and win (scissors)
+        
+  'C X' = 2,  # scissors and lose (paper)
+  'C Y' = 3,  # scissors and draw (scissors)
+  'C Z' = 1   # scissors and win (rock)
+)
+
+outcome_scores = list('X' = 0, 'Y' = 3, 'Z' = 6)
+
+total_score <- 0
+
+for (play in strategy_guide){
+    shape_score <- shape_scores[play]
+    outcome_score <- outcome_scores[substr(play, 3, 3)]
+    game_score <- shape_score[[1]] + outcome_score[[1]]
+    total_score <- total_score + game_score
+}
+
+total_score
+```
+
+    ## [1] 11657
