@@ -1,0 +1,38 @@
+---
+title: "day-04"
+author: "Kevin Perese"
+date: "2022-12-05"
+output:
+  md_document:
+    variant: markdown_github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## Part 1
+```{r}
+signal <- readr::read_file('../inputs/signal.txt')
+
+pattern <- "[a-z]*([a-z])[a-z]*\\1"  # finds a duplicate character in a string
+
+for (i in 4:nchar(signal)) {
+  potential_packet <- substr(signal, i-3, i)
+  if (regexpr(pattern, potential_packet) == -1) {
+    break
+  }
+}
+print(i)
+```
+## Part 2
+```{r}
+for (i in 14:nchar(signal)) {
+  potential_packet <- substr(signal, i-13, i)
+  if (regexpr(pattern, potential_packet) == -1) {
+    break
+  }
+}
+print(i)
+```
