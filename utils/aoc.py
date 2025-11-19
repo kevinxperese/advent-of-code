@@ -9,7 +9,6 @@ parser = argparse.ArgumentParser(description="Set up AoC notebook and download i
 parser.add_argument("year", help="last two digits of the AoC year, e.g., '16' for 2016")
 parser.add_argument("day", help="day of the AoC challenge, e.g., '3'")
 args = parser.parse_args()
-print(args)
 
 try:
     get_input.main(args.year, args.day)

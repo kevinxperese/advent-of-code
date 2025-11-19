@@ -34,9 +34,10 @@ def load_template() -> List[str]:
     return template_path.read_text(encoding="utf-8")
 
 
-def edit_template(template: str, day_label: str, url: str) -> str:
+def edit_template(template: str, day_label: str, url: str, day: str) -> str:
     template = template.replace("{{DAY_LABEL}}", f"{day_label}")
     template = template.replace("{{URL}}", url)
+    template = template.replace("{{DAY}}", day.zfill(2))
     return template
 
 
@@ -56,7 +57,7 @@ def main(year: str, day: str) -> None:
     url = make_url(year, day)
     day_label = get_day_label(url)
     template_lines = load_template()
-    edited_template = edit_template(template_lines, day_label, url)
+    edited_template = edit_template(template_lines, day_label, url, day)
     write_notebook_file(year, day, edited_template)
 
 
